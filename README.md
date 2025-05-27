@@ -36,6 +36,12 @@ Welcome to the **full-stack ML/NLP project** designed to automate and personaliz
 │   ├── 03_recommender_training.ipynb
 │   ├── 04_hybrid_modeling.ipynb
 │   └── 05_dashboard_preview.ipynb
+|
+├── 📁 tests/                  # Jupyter notebooks for tests
+│   ├── test_sentiment.py
+│   ├── test_recommender.py
+│   ├── test_hybrid_recommender.py
+│   └── tests_data_loader.py
 │
 ├── 📁 app/                         # Streamlit frontend app
 │   └── streamlit_app.py           # Complete dashboard with interactivity
