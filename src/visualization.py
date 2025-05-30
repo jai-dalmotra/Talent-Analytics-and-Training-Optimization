@@ -14,9 +14,9 @@ def plot_sentiment_distribution(df: pd.DataFrame):
     Dual sentiment distribution: TextBlob and VADER.
     """
     fig, axs = plt.subplots(1, 2, figsize=(12, 4))
-    sns.countplot(x='tb_sentiment', data=df, ax=axs[0], palette='Set2')
+    sns.countplot(x='tb_sentiment', data=df, ax=axs[0], hue='tb_sentiment', palette='Set2', legend=False)
     axs[0].set_title("TextBlob Sentiment Distribution")
-    sns.countplot(x='vader_sentiment', data=df, ax=axs[1], palette='coolwarm')
+    sns.countplot(x='vader_sentiment', data=df, ax=axs[1], hue='vader_sentiment', palette='coolwarm', legend=False)
     axs[1].set_title("VADER Sentiment Distribution")
     plt.suptitle("📊 Sentiment Analysis Overview", fontsize=14, fontweight='bold')
     plt.tight_layout()
