@@ -27,9 +27,11 @@ def load_csv(filepath: str) -> Optional[pd.DataFrame]:
         print(f"⚠️ Error loading {filepath}: {e}")
         return None
 
+
 # -----------------------------
 # 📊 Data Profiling & Validation
 # -----------------------------
+
 
 def profile_df(df: pd.DataFrame, name: str = "Data") -> None:
     print(f"\n📌 Profile: {name}")
@@ -38,6 +40,7 @@ def profile_df(df: pd.DataFrame, name: str = "Data") -> None:
     print(df.isnull().sum())
     print("\n📊 Sample Rows:")
     print(df.head())
+
 
 def validate_columns(df: pd.DataFrame, required_cols: list, name: str = "Data") -> bool:
     missing = [col for col in required_cols if col not in df.columns]
@@ -50,6 +53,7 @@ def validate_columns(df: pd.DataFrame, required_cols: list, name: str = "Data") 
 # ✂️ Text Cleaning
 # -----------------------------
 
+
 def clean_text(text: str) -> str:
     if pd.isnull(text):
         return ""
@@ -57,6 +61,7 @@ def clean_text(text: str) -> str:
     text = re.sub(rf"[{re.escape(string.punctuation)}]", "", text)
     text = re.sub(r'\s+', ' ', text).strip()
     return text
+
 
 def preprocess_feedback_df(df: pd.DataFrame) -> pd.DataFrame:
     df = df.rename(columns={
@@ -79,6 +84,7 @@ def preprocess_feedback_df(df: pd.DataFrame) -> pd.DataFrame:
 
     print(f"✅ Feedback data cleaned. Shape: {df.shape}")
     return df
+
 
 def preprocess_trainer_df(df: pd.DataFrame) -> pd.DataFrame:
     df = df.rename(columns={
@@ -109,4 +115,3 @@ def save_processed(df: pd.DataFrame, path: str) -> None:
         print(f"💾 Saved cleaned data to {path}")
     except Exception as e:
         print(f"❌ Failed to save {path}: {e}")
-
