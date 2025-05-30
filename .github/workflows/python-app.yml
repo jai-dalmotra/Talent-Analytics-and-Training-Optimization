@@ -28,10 +28,10 @@ jobs:
     - name: 📂 Set PYTHONPATH
       run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
 
-    - name: 🧪 Run All Unit Tests (incl. Visualization)
-      run: |
-        pytest tests/
-        continue-on-error: false
+    - name: 🧪 Run All Unit Tests
+      run: pytest tests/
+      continue-on-error: false
+
         
     - name: 🧼 Lint All Code (src + tests)
       run: |
