@@ -1,11 +1,24 @@
+# Core
 pandas
 numpy
 scikit-learn
+scipy
+
+# Visualizations
 matplotlib
 seaborn
+plotly
+
+# NLP
 textblob
 vaderSentiment
-streamlit
-notebook
-jupyterlab
+
+# Recommender
 scikit-surprise
+
+# Streamlit
+streamlit
+
+# Optional Utilities
+jupyterlab
+notebook
