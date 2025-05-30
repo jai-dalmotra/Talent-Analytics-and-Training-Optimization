@@ -1,19 +1,8 @@
-"""
-data_loader.py
-==============
-This module loads, validates, and preprocesses datasets used in the EdTech recommendation system.
-It handles trainer profiles, learner feedback, and outputs cleaned versions for modeling and dashboards.
-"""
-
 import pandas as pd
 import os
 import re
 import string
 from typing import Optional
-
-# -----------------------------
-# 📁 Data Loading Functions
-# -----------------------------
 
 
 def load_csv(filepath: str) -> Optional[pd.DataFrame]:
@@ -27,11 +16,6 @@ def load_csv(filepath: str) -> Optional[pd.DataFrame]:
     except Exception as e:
         print(f"⚠️ Error loading {filepath}: {e}")
         return None
-
-
-# -----------------------------
-# 📊 Data Profiling & Validation
-# -----------------------------
 
 
 def profile_df(df: pd.DataFrame, name: str = "Data") -> None:
@@ -49,10 +33,6 @@ def validate_columns(df: pd.DataFrame, required_cols: list, name: str = "Data") 
         print(f"❌ Missing columns in {name}: {missing}")
         return False
     return True
-
-# -----------------------------
-# ✂️ Text Cleaning
-# -----------------------------
 
 
 def clean_text(text: str) -> str:
@@ -105,10 +85,6 @@ def preprocess_trainer_df(df: pd.DataFrame) -> pd.DataFrame:
 
     print(f"✅ Trainer data cleaned. Shape: {df.shape}")
     return df
-
-# -----------------------------
-# 💾 Save Processed Data
-# -----------------------------
 
 
 def save_processed(df: pd.DataFrame, path: str) -> None:
