@@ -28,7 +28,7 @@ def plot_avg_rating_per_trainer(df: pd.DataFrame):
     """
     top_trainers = df.groupby('trainer_id')['rating'].mean().sort_values(ascending=False).head(10)
     plt.figure(figsize=(10, 4))
-    sns.barplot(x=top_trainers.index, y=top_trainers.values, palette='crest')
+    sns.barplot(x=top_trainers.index, y=top_trainers.values, hue=top_trainers.index, palette='crest', legend=False)
     plt.title("🏆 Top 10 Trainers by Average Rating")
     plt.ylabel("Avg Rating")
     plt.xlabel("Trainer ID")
