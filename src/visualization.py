@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 
 sns.set(style="whitegrid", palette="muted")
 
+
 def plot_sentiment_distribution(df: pd.DataFrame):
     """
     Dual sentiment distribution: TextBlob and VADER.
@@ -21,6 +22,7 @@ def plot_sentiment_distribution(df: pd.DataFrame):
     plt.suptitle("Sentiment Analysis Overview", fontsize=14, fontweight='bold')
     plt.tight_layout()
     plt.show()
+
 
 def plot_avg_rating_per_trainer(df: pd.DataFrame):
     """
@@ -37,6 +39,7 @@ def plot_avg_rating_per_trainer(df: pd.DataFrame):
     plt.tight_layout()
     plt.show()
 
+
 def plot_sentiment_vs_rating(df: pd.DataFrame):
     """
     Scatter plot: Sentiment score (VADER) vs Rating.
@@ -48,6 +51,7 @@ def plot_sentiment_vs_rating(df: pd.DataFrame):
     plt.ylabel("Feedback Rating")
     plt.tight_layout()
     plt.show()
+
 
 def plot_learner_journey(df: pd.DataFrame):
     """
@@ -65,6 +69,7 @@ def plot_learner_journey(df: pd.DataFrame):
     plt.tight_layout()
     plt.show()
     return learner_id
+
 
 def plot_learner_engagement(df: pd.DataFrame):
     """
