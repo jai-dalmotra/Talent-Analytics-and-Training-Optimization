@@ -4,6 +4,7 @@ from src.recommender import prepare_surprise_data, train_svd_model
 from src.hybrid_recommender import hybrid_recommend_top_n
 import pandas as pd
 
+
 def test_hybrid_recommendation_output():
     # Prepare mock feedback data
     feedback_data = pd.DataFrame({
