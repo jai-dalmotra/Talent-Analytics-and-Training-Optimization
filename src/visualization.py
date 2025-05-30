@@ -65,3 +65,16 @@ def plot_learner_journey(df: pd.DataFrame):
     plt.tight_layout()
     plt.show()
     return learner_id
+
+def plot_learner_engagement(df: pd.DataFrame):
+    """
+    Histogram: Sessions attended per learner.
+    """
+    learner_sessions = df.groupby('learner_id').size()
+    plt.figure(figsize=(8, 4))
+    sns.histplot(learner_sessions, bins=15, kde=False, color='teal')
+    plt.title("Learner Engagement (Sessions Attended)")
+    plt.xlabel("Number of Sessions")
+    plt.ylabel("Learner Count")
+    plt.tight_layout()
+    plt.show()
