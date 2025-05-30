@@ -6,6 +6,7 @@ from src.visualization import (
     plot_learner_journey
 )
 
+
 def test_visuals_run_without_errors():
     df = pd.DataFrame({
         'learner_id': ['L1']*3 + ['L2'],
