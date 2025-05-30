@@ -18,15 +18,16 @@ def get_textblob_polarity(text: str) -> float:
     """Returns polarity score between -1 and 1 using TextBlob."""
     try:
         return TextBlob(text).sentiment.polarity
-    except:
+    except Exception:
         return 0.0
+
 
 def get_vader_compound(text: str) -> float:
     """Returns compound sentiment score using VADER."""
     analyzer = SentimentIntensityAnalyzer()
     try:
         return analyzer.polarity_scores(text)['compound']
-    except:
+    except Exception:
         return 0.0
 
 
