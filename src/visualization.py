@@ -18,7 +18,7 @@ def plot_sentiment_distribution(df: pd.DataFrame):
     axs[0].set_title("TextBlob Sentiment Distribution")
     sns.countplot(x='vader_sentiment', data=df, ax=axs[1], hue='vader_sentiment', palette='coolwarm', legend=False)
     axs[1].set_title("VADER Sentiment Distribution")
-    plt.suptitle("📊 Sentiment Analysis Overview", fontsize=14, fontweight='bold')
+    plt.suptitle("Sentiment Analysis Overview", fontsize=14, fontweight='bold')
     plt.tight_layout()
     plt.show()
 
@@ -29,7 +29,7 @@ def plot_avg_rating_per_trainer(df: pd.DataFrame):
     top_trainers = df.groupby('trainer_id')['rating'].mean().sort_values(ascending=False).head(10)
     plt.figure(figsize=(10, 4))
     sns.barplot(x=top_trainers.index, y=top_trainers.values, hue=top_trainers.index, palette='crest', legend=False)
-    plt.title("🏆 Top 10 Trainers by Average Rating")
+    plt.title("Top 10 Trainers by Average Rating")
     plt.ylabel("Avg Rating")
     plt.xlabel("Trainer ID")
     plt.xticks(rotation=45)
@@ -58,7 +58,7 @@ def plot_learner_journey(df: pd.DataFrame):
 
     plt.figure(figsize=(8, 4))
     sns.barplot(data=learner_data, x='trainer_id', y='rating', hue='vader_sentiment', dodge=False)
-    plt.title(f"📘 Ratings by Learner: {learner_id}")
+    plt.title(f"Ratings by Learner: {learner_id}")
     plt.ylabel("Rating")
     plt.xlabel("Trainer")
     plt.ylim(0, 5)
