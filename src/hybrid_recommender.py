@@ -4,6 +4,7 @@ hybrid_recommender.py
 This module re-ranks SVD-based recommendations by incorporating sentiment scores.
 """
 
+
 def hybrid_recommend_top_n(algo, learner_id: str, all_trainers: list, rated_trainers: list,
                            trainer_sentiment_df, weight_rating=0.7, weight_sentiment=0.3, n=5):
     """
