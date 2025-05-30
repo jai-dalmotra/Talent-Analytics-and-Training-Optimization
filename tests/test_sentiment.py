@@ -14,4 +14,3 @@ def test_sentiment_labels():
     assert 'tb_sentiment' in df.columns
     assert 'vader_sentiment' in df.columns
     assert set(df['tb_sentiment'].unique()).issubset({"Positive", "Negative", "Neutral"})
-
