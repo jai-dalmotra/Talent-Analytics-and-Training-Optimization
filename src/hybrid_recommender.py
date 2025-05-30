@@ -1,8 +1,3 @@
-"""
-hybrid_recommender.py
-======================
-This module re-ranks SVD-based recommendations by incorporating sentiment scores.
-"""
 
 
 def hybrid_recommend_top_n(algo, learner_id: str, all_trainers: list, rated_trainers: list,
