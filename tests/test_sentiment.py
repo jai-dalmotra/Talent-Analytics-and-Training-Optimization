@@ -5,7 +5,7 @@ import pandas as pd
 def test_sentiment_labels():
     sample = pd.DataFrame({
         'cleaned_feedback': [
-            "This was fantastic!", 
+            "This was fantastic!",
             "Not great, could be better.",
             "Just okay."
         ]
