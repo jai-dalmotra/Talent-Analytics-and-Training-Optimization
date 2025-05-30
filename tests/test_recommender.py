@@ -2,6 +2,7 @@
 from src.recommender import prepare_surprise_data, train_svd_model, recommend_top_n
 import pandas as pd
 
+
 def test_svd_pipeline():
     df = pd.DataFrame({
         'learner_id': ['L1', 'L1', 'L2', 'L3'],
