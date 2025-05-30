@@ -1,6 +1,7 @@
 from src.sentiment_analysis import add_sentiment_columns
 import pandas as pd
 
+
 def test_sentiment_labels():
     sample = pd.DataFrame({
         'cleaned_feedback': [
