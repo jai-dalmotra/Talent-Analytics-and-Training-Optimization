@@ -25,14 +25,19 @@ jobs:
         pip install -r requirements.txt
         pip install pytest flake8
 
+    - name: 📂 Set PYTHONPATH
+      run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+
     - name: 🧪 Run All Unit Tests (incl. Visualization)
       run: |
         pytest tests/
-
+        continue-on-error: false
+        
     - name: 🧼 Lint All Code (src + tests)
       run: |
         flake8 src/ --max-line-length=120
         flake8 tests/ --max-line-length=120
+        flake8 src/ tests/ --max-line-length=120 --statistics        
 
     - name: ♻️ Cache Python Packages
       uses: actions/cache@v3
@@ -41,3 +46,9 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
+
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest flake8
