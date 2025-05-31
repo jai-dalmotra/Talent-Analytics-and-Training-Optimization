@@ -40,15 +40,13 @@ def recommend_items(model, learner_id, user_to_idx, idx_to_item, interaction_mat
 
     user_idx = user_to_idx[learner_id]
 
-    # Extract only the row for the user as CSR matrix with shape (1, n_items)
+    # Extract the user's interaction row as a CSR matrix
     user_items = interaction_matrix[user_idx]
+    from scipy.sparse import csr_matrix
     user_items_csr = user_items.tocsr() if not isinstance(user_items, csr_matrix) else user_items
 
-    # ALS expects user_items matrix with shape (1, n_items)
-    recommended = model.recommend(user_idx, user_items_csr, N=N)
+    # Get recommended items and scores separately
+    item_ids, scores = model.recommend(user_idx, user_items_csr, N=N)
 
-    # Each recommended item is a tuple (item_idx, score)
-    return [
-        (idx_to_item[int(item_id)], float(score))
-        for item_id, score in recommended
-    ]
+    # Pair them together and map back to original item IDs
+    return [(idx_to_item[int(item_id)], float(score)) for item_id, score in zip(item_ids, scores)]
