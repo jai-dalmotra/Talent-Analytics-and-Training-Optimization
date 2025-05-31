@@ -14,7 +14,7 @@ textblob
 vaderSentiment
 
 # Recommender
-lightfm==1.17
+implicit==0.7.2
 
 # Streamlit
 streamlit
