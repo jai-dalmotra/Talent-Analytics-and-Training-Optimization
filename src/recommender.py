@@ -39,8 +39,8 @@ def recommend_items(model, learner_id, user_to_idx, idx_to_item, interaction_mat
         return []
 
     user_idx = user_to_idx[learner_id]
-    # Use only the row corresponding to the specific user
     user_items = interaction_matrix[user_idx]
-    
+
     recommended = model.recommend(user_idx, user_items, N=N)
-    return [(idx_to_item[item_id], score) for item_id, score in recommended]
+
+    return [(idx_to_item[int(item_id)], float(score)) for item_id, score in recommended]
