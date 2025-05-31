@@ -40,5 +40,4 @@ def recommend_items(model, user_id, user_to_idx, idx_to_item, interaction_matrix
 
     user_idx = user_to_idx[user_id]
     recommended = model.recommend(user_idx, interaction_matrix[user_idx], N=n)
-    return [(idx_to_item[item_id], score) for item_id, score in recommended]
-
+    return [(idx_to_item[item[0]], item[1]) for item in recommended]
