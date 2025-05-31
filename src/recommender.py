@@ -34,10 +34,11 @@ def train_implicit_model(interaction_matrix, factors=20, iterations=15, regulari
     return model
 
 
-def recommend_items(model, user_id, user_to_idx, idx_to_item, interaction_matrix, n=5):
-    if user_id not in user_to_idx:
+def recommend_items(model, learner_id, user_to_idx, idx_to_item, interaction_matrix, N=5):
+    if learner_id not in user_to_idx:
         return []
 
-    user_idx = user_to_idx[user_id]
-    recommended = model.recommend(user_idx, interaction_matrix[user_idx], N=n)
-    return [(idx_to_item[item[0]], item[1]) for item in recommended]
+    user_idx = user_to_idx[learner_id]
+    recommended = model.recommend(user_idx, interaction_matrix.T.tocsr(), N=N)
+    return [(idx_to_item[item_id], score) for item_id, score in recommended]
+
