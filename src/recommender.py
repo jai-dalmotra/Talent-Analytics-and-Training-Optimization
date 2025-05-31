@@ -6,8 +6,6 @@ This module builds and applies a collaborative filtering-based recommendation sy
 
 
 # src/recommender.py
-import pandas as pd
-import numpy as np
 from scipy.sparse import coo_matrix, csr_matrix
 from implicit.als import AlternatingLeastSquares
 
@@ -42,7 +40,6 @@ def recommend_items(model, learner_id, user_to_idx, idx_to_item, interaction_mat
 
     # Extract the user's interaction row as a CSR matrix
     user_items = interaction_matrix[user_idx]
-    from scipy.sparse import csr_matrix
     user_items_csr = user_items.tocsr() if not isinstance(user_items, csr_matrix) else user_items
 
     # Get recommended items and scores separately
