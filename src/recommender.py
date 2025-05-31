@@ -39,13 +39,16 @@ def recommend_items(model, learner_id, user_to_idx, idx_to_item, interaction_mat
         return []
 
     user_idx = user_to_idx[learner_id]
-    user_items = interaction_matrix.tocsr()
 
-    # Recommended will be a (N, 2) numpy array: item_id and score
-    recommended = model.recommend(user_idx, user_items, N=N)
+    # Extract only the row for the user as CSR matrix with shape (1, n_items)
+    user_items = interaction_matrix[user_idx]
+    user_items_csr = user_items.tocsr() if not isinstance(user_items, csr_matrix) else user_items
 
-    # Handle row-wise iteration safely
+    # ALS expects user_items matrix with shape (1, n_items)
+    recommended = model.recommend(user_idx, user_items_csr, N=N)
+
+    # Each recommended item is a tuple (item_idx, score)
     return [
-        (idx_to_item[int(row[0])], float(row[1]))
-        for row in recommended
+        (idx_to_item[int(item_id)], float(score))
+        for item_id, score in recommended
     ]
