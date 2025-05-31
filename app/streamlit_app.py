@@ -6,7 +6,11 @@ import streamlit as st
 import pandas as pd
 from src.data_loader import preprocess_feedback_df, load_csv
 from src.sentiment_analysis import add_sentiment_columns
-from src.recommender import build_dataset, train_lightfm_model, recommend_top_n
+from src.recommender import (
+    build_interaction_matrix,
+    train_implicit_model,
+    recommend_items
+)
 from src.visualization import (
     plot_sentiment_distribution,
     plot_avg_rating_per_trainer,
@@ -24,10 +28,10 @@ feedback_df = load_csv("data/session_feedback.csv")
 feedback_df = preprocess_feedback_df(feedback_df)
 feedback_df = add_sentiment_columns(feedback_df)
 
-# 📊 Prepare LightFM Recommender
+# 📊 Prepare Implicit ALS Recommender
 ratings_df = feedback_df[['learner_id', 'trainer_id', 'rating']].dropna()
-dataset, interactions, _ = build_dataset(ratings_df)
-model = train_lightfm_model(interactions)
+interaction_matrix, user_to_idx, item_to_idx, idx_to_item = build_interaction_matrix(ratings_df)
+model = train_implicit_model(interaction_matrix)
 
 # 📊 Sentiment Summary (optional for analysis)
 trainer_sentiment_df = (
@@ -45,15 +49,12 @@ selected_learner = st.sidebar.selectbox("👤 Select a Learner", learner_ids)
 n_recommendations = st.sidebar.slider("📌 Number of Recommendations", 1, 10, 5)
 
 # 🧠 Generate Recommendations
-rated_trainers = feedback_df[feedback_df["learner_id"] == selected_learner]["trainer_id"].tolist()
-all_trainers = feedback_df["trainer_id"].unique().tolist()
-
-recommendations = recommend_top_n(
+recommendations = recommend_items(
     model=model,
-    dataset=dataset,
-    learner_id=selected_learner,
-    rated_trainers=rated_trainers,
-    all_trainers=all_trainers,
+    user_id=selected_learner,
+    user_to_idx=user_to_idx,
+    idx_to_item=idx_to_item,
+    interaction_matrix=interaction_matrix,
     n=n_recommendations
 )
 
@@ -69,7 +70,7 @@ csv = rec_df.to_csv(index=False).encode("utf-8")
 st.download_button(
     label="📅 Download Recommendations as CSV",
     data=csv,
-    file_name=f"lightfm_recommendations_{selected_learner}.csv",
+    file_name=f"als_recommendations_{selected_learner}.csv",
     mime="text/csv"
 )
 
