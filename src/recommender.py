@@ -8,7 +8,7 @@ This module builds and applies a collaborative filtering-based recommendation sy
 # src/recommender.py
 import pandas as pd
 import numpy as np
-from scipy.sparse import coo_matrix
+from scipy.sparse import coo_matrix, csr_matrix
 from implicit.als import AlternatingLeastSquares
 
 
