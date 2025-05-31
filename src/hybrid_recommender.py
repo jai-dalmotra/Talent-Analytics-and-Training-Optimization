@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def hybrid_recommend_top_n(model, learner_id: str, user_to_idx: dict, idx_to_item: dict,
                            interaction_matrix, all_trainers: list, rated_trainers: list,
                            trainer_sentiment_df, item_to_idx: dict,
